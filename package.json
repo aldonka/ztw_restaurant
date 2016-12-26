@@ -1,0 +1,23 @@
+{
+  "name": "ztw_restaurant",
+  "private": true,
+  "version": "0.0.1",
+  "author": "dkrzysztofik",
+  "main": "server/server.js",
+  "dependencies": {
+    "angular": "1.4.4",
+    "angular-animate": "1.4.4",
+    "angular-cookies": "1.4.4",
+    "angular-resource": "1.4.4",
+    "angular-route": "1.4.4",
+    "body-parser": "~1.0.1",
+    "bootstrap": "3.3.6",
+    "express": "^4.14.0",
+    "jade": "latest",
+    "jsonwebtoken": "^7.2.1",
+    "mongoose": "~3.6.13",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "socket.io": "^1.7.2"
+  }
+}
