@@ -1,1 +1,2 @@
-# Template for AngularJS
+# MEAN application
+Restaurant example

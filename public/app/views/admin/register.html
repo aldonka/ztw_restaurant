@@ -3,11 +3,13 @@
         <form ng-submit="registerNewUser()" ng-init="user = {}">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter username" ng-model="user.username">
+                <input type="text" class="form-control" id="username" placeholder="Enter username"
+                       ng-model="user.username">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
+                <input type="password" class="form-control" id="password" placeholder="Password"
+                       ng-model="user.password">
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
@@ -18,6 +20,23 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-info">Register new user!</button>
+        </form>
+    </div>
+
+    <div>
+        <form ng-submit="login()" ng-init="user = {}">
+            <div class="form-group">
+                <label for="usernam">Username:</label>
+                <input type="text" class="form-control" id="usernam" placeholder="Enter username"
+                       ng-model="user.username">
+            </div>
+            <div class="form-group">
+                <label for="passwor">Password</label>
+                <input type="password" class="form-control" id="passwor" placeholder="Password"
+                       ng-model="user.password">
+            </div>
+            <button type="submit" class="btn btn-info">Log in!</button>
+
         </form>
     </div>
 </div>

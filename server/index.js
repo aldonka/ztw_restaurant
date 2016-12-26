@@ -8,6 +8,12 @@ var bodyParser = require('body-parser');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var passport = require('passport');
+var jwt = require('express-jwt');
+var auth = jwt({
+    secret: 'SECRET',
+    userProperty: 'payload'
+});
 
 // var cors = require('cors');
 app.use(bodyParser.json()); // support json encoded bodies
@@ -50,10 +56,10 @@ http.listen(3880, function(){
 
 //db model files
 require('./users/model');
-// require('./products/model');
+
+app.use(passport.initialize());
 
 app.use('/api', require('./users/router'));
-// app.use('/api', require('./products/router'));
 
 // FINALLY, use any error handlers
 // app.use(require('app/errors/not-found'))
