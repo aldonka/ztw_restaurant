@@ -17,12 +17,12 @@ Dish = mongoose.model('Dish', DishSchema);
 
 // Getter
 DishSchema.path('price').get(function (num) {
-    return (num / 100).toFixed(2);
+    return (num).toFixed(2);
 });
 
 // Setter
 DishSchema.path('price').set(function (num) {
-    return num * 100;
+    return Math.round(num*100)/100;
 });
 
 function findAll(callback) {
@@ -31,7 +31,8 @@ function findAll(callback) {
 
 function create(newDish, callback) {
     var dish = new Dish(newDish);
-
+    dish.avaliable = true;
+    dish.stars = 5;
     dish.save(callback);
 }
 

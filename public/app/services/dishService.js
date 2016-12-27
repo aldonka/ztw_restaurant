@@ -4,11 +4,13 @@
 angular.module('myApp')
     .service('DishService', ['$timeout', '$location', '$rootScope', 'Dish', 'InfoService', function ($timeout, $location, $rootScope, Dish, InfoService) {
         return {
-            create: function (dish, dishes) {
-
+            create: function (dish, callback) {
+                if(dish != null && dish !== undefined && dish.name.length > 0){
+                    Dish.create(dish, callback);
+                }
             },
             getAll: function (callback) {
-
+                Dish.get({}, callback);
             }
         };
     }]);

@@ -4,12 +4,12 @@
 angular.module('myApp')
     .value('DishLoc', '/dishes/:id')
     .factory('Dish', ['$resource', 'DishLoc', 'Path', function ($resource, DishLoc, Path) {
-        return $resource(Path + DishLoc, {}, {
+        return $resource(Path + DishLoc, {id: null}, {
             get : {
                 method: 'GET',
                 isArray : true
             },
-            save : {
+            create : {
                 method: 'POST'
             },
             delete: {
