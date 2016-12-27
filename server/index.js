@@ -56,10 +56,12 @@ http.listen(3880, function(){
 
 //db model files
 require('./users/model');
+require('./categories/model');
 
 app.use(passport.initialize());
 
 app.use('/api', require('./users/router'));
+app.use('/api', require('./categories/router'));
 
 // FINALLY, use any error handlers
 // app.use(require('app/errors/not-found'))
