@@ -58,12 +58,14 @@ http.listen(3880, function(){
 require('./users/model');
 require('./categories/model');
 require('./dishes/model');
+require('./reservarions/model');
 
 app.use(passport.initialize());
 
 app.use('/api', require('./users/router'));
 app.use('/api', require('./categories/router'));
 app.use('/api', require('./dishes/router'));
+app.use('/api', require('./reservarions/router'));
 
 // FINALLY, use any error handlers
 // app.use(require('app/errors/not-found'))

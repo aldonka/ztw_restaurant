@@ -12,7 +12,7 @@ angular.module('myApp')
 
         $scope.addDish = function () {
             DishService.create($scope.newDish, function () {
-                console.log("new dish added!");
+                console.log("new reservation added!");
                 DishService.getAll(function (dishes) {
                     $scope.dishes = dishes;
                 });
@@ -21,9 +21,13 @@ angular.module('myApp')
 
         $scope.removeDish = function (id) {
             DishService.delete(id, function (response) {
-                console.log("Removed dish: " + JSON.stringify(response));
+                console.log("Removed reservation: " + JSON.stringify(response));
                 getAllDishes();
             })
+        };
+
+        $scope.reserveTable = function () {
+            console.log("Table reserved!" + $scope.newReservation.table);
         }
 
     }]);

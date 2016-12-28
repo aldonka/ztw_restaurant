@@ -14,6 +14,10 @@ angular.module('myApp', [
             templateUrl: 'app/views/login.html',
             controller: 'adminCtrl'
         })
+        .when('/reservation', {
+            templateUrl: 'app/views/reservation.html',
+            controller: 'menuCtrl'
+        })
         .when('/menu', {
             templateUrl: 'app/views/menu.html',
             controller: 'menuCtrl'
