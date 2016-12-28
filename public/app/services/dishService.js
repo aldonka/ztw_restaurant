@@ -11,6 +11,9 @@ angular.module('myApp')
             },
             getAll: function (callback) {
                 Dish.get({}, callback);
+            },
+            delete: function (id, callback) {
+                Dish.delete({id : id}, callback);
             }
         };
     }]);

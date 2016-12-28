@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>Potrawy</h2>
+    <p>potrway i ich ceny:
+        <a class="btn btn-info" href="#/admin/menu/add">Dodaj potrawe</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Obrazek</th>
+            <th>Opis</th>
+            <th>Cena</th>
+            <th>Dostępność</th>
+            <th>Akcja</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="dish in dishes">
+            <td><strong>{{dish.name}}</strong></td>
+            <td><img src="{{dish.img}}" class="img img-responsive" height="100px"></td>
+            <td>{{dish.description}}</td>
+            <td>{{dish.price | currency}}</td>
+            <td>
+                <input type="checkbox" ng-checked="dish.avaliable" disabled>
+            </td>
+            <td>
+                <div class="btn-group-sm">
+                    <button class="btn btn-warning" ng-click="">Modyfikuj</button>
+                    <button class="btn btn-danger" ng-click="removeDish(dish._id)">Usuń</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

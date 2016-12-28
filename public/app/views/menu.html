@@ -5,6 +5,7 @@
         <thead>
         <tr>
             <th>Nazwa</th>
+            <th>Obrazek</th>
             <th>Opis</th>
             <th>Cena</th>
         </tr>
@@ -12,47 +13,10 @@
         <tbody>
         <tr ng-repeat="dish in dishes">
             <td>{{dish.name}}</td>
+            <td><img src="{{dish.img}}" class="img img-responsive" height="100px"></td>
             <td>{{dish.description}}</td>
             <td>{{dish.price | currency}}</td>
         </tr>
         </tbody>
     </table>
-</div>
-
-<div class="row">
-    <div class="col-md-push-2 col-md-8">
-        <form ng-submit="addDish()" ng-init="newDish = {}">
-            <div class="form-group">
-                <label for="name">Dish name:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name"
-                       ng-model="newDish.name">
-            </div>
-            <div class="form-group">
-                <label for="price">Password</label>
-                <input type="number" class="form-control" id="price" placeholder="Price"
-                       ng-model="newDish.price">
-            </div>
-            <div class="form-group">
-                <label for="desc">Description</label>
-                <input type="text" class="form-control" id="desc" placeholder="Price"
-                       ng-model="newDish.description">
-            </div>
-            <div class="form-group">
-                <label for="category">Category</label>
-                <select type="" class="form-control" id="category" placeholder="Category" ng-model="newDish.category">
-                    <option>przystawka</option>
-                    <option>danie główne</option>
-                    <option>pizza</option>
-                    <option>napoje</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="img">Image</label>
-                <input type="url" class="form-control" id="img" placeholder="Image"
-                       ng-model="newDish.img">
-            </div>
-            <button type="submit" class="btn btn-info">Add new dish!</button>
-        </form>
-    </div>
-
 </div>

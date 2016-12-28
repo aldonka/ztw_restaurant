@@ -18,6 +18,14 @@ angular.module('myApp', [
             templateUrl: 'app/views/menu.html',
             controller: 'menuCtrl'
         })
+        .when('/admin/menu/add', {
+            templateUrl: 'app/views/admin/menu_add.html',
+            controller: 'menuCtrl'
+        })
+        .when('/admin/menu/modify', {
+            templateUrl: 'app/views/admin/menu_modify.html',
+            controller: 'menuCtrl'
+        })
         .when('/admin/register', {
             templateUrl: 'app/views/admin/register.html',
             controller: 'adminCtrl'
