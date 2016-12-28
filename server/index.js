@@ -15,13 +15,19 @@ var auth = jwt({
     userProperty: 'payload'
 });
 
-// var cors = require('cors');
+var cors = require('cors');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-app.use('/restaurant', express.static("../public"));
+
 
 // use it before all route definitions
-// app.use(cors({origin: 'http://localhost:63342'}));
+app.use(cors({origin: 'http://localhost:3000'}));
+
+app.use('/restaurant/scripts', express.static('../node_modules'));
+app.use('/restaurant/uib/template', express.static('../node_modules/angular-ui-bootstrap/template'));
+app.use('/restaurant', express.static("../public"));
+
+
 
 // io.on('connection', function(socket){
 //     console.log('A user connected');
