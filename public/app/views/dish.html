@@ -42,11 +42,11 @@
         <div class="row">
             <h3 class="h3">Komentarze:</h3>
             <div class="col-md-4">
-                <form ng-submit="addComment()" ng-init="comment = {}">
+                <form ng-submit="addComment()">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="podpis"/>
-                        <input class="form-control" type="email" placeholder="email"/>
-                        <textarea rows="4" class="form-control" placeholder="tesc komentarza.." />
+                        <input class="form-control" type="text" placeholder="podpis" ng-model="comment.author"/>
+                        <input class="form-control" type="email" placeholder="email" ng-model="comment.email"/>
+                        <textarea rows="4" class="form-control" placeholder="tesc komentarza.."  ng-model="comment.content"/>
                         <button class="col-md-12 btn btn-sm btn-info" type="submit">Dodaj komentarz</button>
                     </div>
                 </form>
