@@ -29,32 +29,28 @@ app.use('/restaurant', express.static("../public"));
 
 
 
-// io.on('connection', function(socket){
-//     console.log('A user connected');
-//
-//     //Send a message after a timeout of 4seconds
-//     setTimeout(function(){
-//         socket.send('Sent a message 4seconds after connection!');
-//     }, 4000);
-//     socket.on('disconnect', function () {
-//         console.log('A user disconnected');
-//     });
-//
-//     socket.on('product:add', function (data) {
-//         console.log('A product added: ' + data.name);
-//         socket.broadcast.emit('product:added', data);
-//     });
-//
-//     socket.on('product:remove', function (data) {
-//         console.log('A product has been removed: ' + data);
-//         socket.broadcast.emit('product:removed', data);
-//     });
-//
-//     socket.on('product:update', function (data) {
-//         console.log('Product has been updated: ' + data._id);
-//         socket.broadcast.emit('product:updated', data);
-//     })
-// });
+io.on('connection', function(socket){
+    console.log('A user connected');
+
+    //Send a message after a timeout of 4seconds
+    setTimeout(function(){
+        socket.send('Sent a message 4seconds after connection!');
+    }, 4000);
+    socket.on('disconnect', function () {
+        console.log('A user disconnected');
+    });
+
+    socket.on('comment:add', function (data) {
+        console.log('New comment added: ' + data.author);
+        socket.broadcast.emit('comment:added', data);
+    });
+
+    socket.on('comment:remove', function (data) {
+        console.log('A product has been removed: ' + data);
+        socket.broadcast.emit('comment:removed', data);
+    });
+
+});
 
 http.listen(3880, function(){
     console.log('Socket.io listening on *:3880');

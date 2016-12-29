@@ -2,12 +2,13 @@
  * Created by Dominika on 2016-12-29.
  */
 angular.module('myApp')
-    .service('CommentService', ['$timeout', '$location', '$rootScope', 'Comment', 'InfoService', function ($timeout, $location, $rootScope, Comment, InfoService) {
+    .service('CommentService', ['$timeout', '$window', '$rootScope', '$location', 'Comment', 'InfoService', 'Socket', function ($timeout, $window, $rootScope, $location, Comment, InfoService, Socket) {
         return {
             create: function (comment, callback) {
-                console.log("Comment" + JSON.stringify(comment));
                 if (comment != null && comment !== undefined && comment.content.length > 0) {
                     Comment.create(comment, callback);
+                    Socket.emit('comment:add', comment);
+                    $window.location.reload();
                 }
             },
             get: function (id, callback) {
