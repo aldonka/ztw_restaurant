@@ -9,6 +9,9 @@ angular.module('myApp')
                     Dish.create(dish, callback);
                 }
             },
+            get: function (id, callback) {
+                Dish.getById({id: id}, callback);
+            },
             getAll: function (callback) {
                 Dish.get({}, callback);
             },

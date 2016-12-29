@@ -22,6 +22,10 @@ angular.module('myApp', [
             templateUrl: 'app/views/menu.html',
             controller: 'menuCtrl'
         })
+        .when('/dish/:id', {
+            templateUrl: 'app/views/dish.html',
+            controller: 'dishCtrl'
+        })
         .when('/admin/menu/add', {
             templateUrl: 'app/views/admin/menu_add.html',
             controller: 'menuCtrl'

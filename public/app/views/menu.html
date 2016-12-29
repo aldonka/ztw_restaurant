@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="dish in dishes">
+        <tr ng-repeat="dish in dishes" ng-click="getDish(dish._id)">
             <td>{{dish.name}}</td>
             <td><img src="{{dish.img}}" class="img img-responsive" height="100px"></td>
             <td>{{dish.description}}</td>

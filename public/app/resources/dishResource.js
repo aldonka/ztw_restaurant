@@ -9,6 +9,10 @@ angular.module('myApp')
                 method: 'GET',
                 isArray : true
             },
+            getById: {
+                method: 'GET',
+                isArray: false
+            },
             create : {
                 method: 'POST'
             },

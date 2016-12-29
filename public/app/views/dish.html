@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="jumbotron">
+        <ul class="breadcrumb">
+            <li><a href="#/menu">Menu</a></li>
+            <li class="active" >{{dish.category}} {{dish.name}}</li>
+        </ul>
+        <div class="row">
+            <h3 class="h3">
+                Potrawa: {{dish.category}} {{dish.name}}
+                <strong class="pull-right text-warning">{{dish.price | currency}}</strong>
+            </h3>
+            <div class="col-md-4">
+                <img src="{{dish.img}}" class="img img-responsive" height="100px">
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label>Opis:</label>
+                    <p>{{dish.description}}</p>
+                </div>
+                <div class="form-group">
+                    <div ng-show="dish.ingradients.length > 0 " class="col-md-6">
+                        <label>Składniki:</label>
+                        <ul>
+                            <li ng-repeat="ingradient in dish.ingradients">
+                                {{ingradient}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-show="dish.allergens.length > 0" class="col-md-6">
+                        <label>Alergeny:</label>
+                        <ul>
+                            <li ng-repeat="ingradient in dish.allergens">
+                                {{ingradient}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <h3 class="h3">Komentarze:</h3>
+            <div class="col-md-4">
+                <form ng-submit="addComment()" ng-init="comment = {}">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="podpis"/>
+                        <input class="form-control" type="email" placeholder="email"/>
+                        <textarea rows="4" class="form-control" placeholder="tesc komentarza.." />
+                        <button class="col-md-12 btn btn-sm btn-info" type="submit">Dodaj komentarz</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <table ng-show="comments.length > 0" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Autor</th>
+                        <th>Email</th>
+                        <th>Treść</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="comment in comments">
+                        <td class="col-md-2">{{comment.author}}</td>
+                        <td class="col-md-2">{{comment.email}}</td>
+                        <td class="col-md-8">{{comment.content}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
