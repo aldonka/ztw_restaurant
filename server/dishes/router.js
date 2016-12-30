@@ -8,6 +8,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var auth = require('../auth_config');
 
 function getDishes (req, res) {
     dish.findAll(function (error, dishes) {
@@ -40,10 +41,10 @@ function remove(req, res) {
     });
 }
 
-router.post('/dishes', createDish);
+router.post('/dishes', auth.auth, createDish);
 router.get('/dishes', getDishes);
 router.get('/dishes/:id', findById);
-router.put('/dishes/:id', update);
-router.delete('/dishes/:id', remove);
+router.put('/dishes/:id', auth.auth, update);
+router.delete('/dishes/:id', auth.auth, remove);
 
 module.exports = router;

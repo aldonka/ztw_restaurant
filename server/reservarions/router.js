@@ -8,7 +8,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
+var auth = require('../auth_config');
 
 function getReservations (req, res) {
     reservation.findAll(function (error, reservations) {
@@ -44,7 +44,7 @@ function remove(req, res) {
 router.post('/reservations', createReservation);
 router.get('/reservations', getReservations);
 router.get('/reservations/:id', findById);
-router.put('/reservations/:id', update);
-router.delete('/reservations/:id', remove);
+router.put('/reservations/:id', auth.auth, update);
+router.delete('/reservations/:id', auth.auth, remove);
 
 module.exports = router;

@@ -5,6 +5,7 @@ var user = require('./model');
 var basic = require('../basic');
 var passport = require('passport');
 var router = require('express').Router();
+var auth = require('../auth_config');
 
 function getUsers(req, res) {
     user.findAll(function (error, users) {
@@ -33,8 +34,6 @@ function register(req, res) {
 
 function login(req, res) {
     console.log("Logging user:" + req.body.username);
-    // user.findByUsername(req.body, function (err, user) {
-        // basic.handleResponse(err, user, req, res, 'error while creating product');
         passport.authenticate('local', function(err, user, info){
             var token;
             // If Passport throws/catches an error
@@ -59,8 +58,8 @@ function login(req, res) {
 
 }
 
-router.get('/users', getUsers);
+router.get('/users', auth.auth, getUsers);
 router.post('/login', login);
-router.post('/register', register);
+router.post('/register', auth.auth, register);
 
 module.exports = router;

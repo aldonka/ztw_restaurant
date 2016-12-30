@@ -9,11 +9,6 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var auth = require('../auth_config');
-// var jwt = require('express-jwt');
-// var auth = jwt({
-//     secret: 'SECRET',
-//     userProperty: 'payload'
-// });
 
 function getAll (req, res) {
     dish.findAll(function (error, comments) {

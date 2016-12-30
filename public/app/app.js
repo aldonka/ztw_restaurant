@@ -46,7 +46,13 @@ angular.module('myApp', [
             redirectTo: '/main'
         });
 }])
-    .run(['$rootScope', 'AuthenticationService', function ($rootScope, AuthenticationService) {
+    .run(['$rootScope', '$location', 'AuthenticationService', function ($rootScope, $location, AuthenticationService) {
+        $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
+            if ($location.path().indexOf("admin") > -1 && !AuthenticationService.isLoggedIn() && !$rootScope.isAdmin()) {
+                $location.path('/menu');
+            }
+        });
+
         $rootScope.logout = function () {
             AuthenticationService.logout();
         };
