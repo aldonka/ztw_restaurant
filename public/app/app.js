@@ -12,7 +12,7 @@ angular.module('myApp', [
         })
         .when('/login', {
             templateUrl: 'app/views/login.html',
-            controller: 'adminCtrl'
+            controller: 'mainCtrl'
         })
         .when('/reservation', {
             templateUrl: 'app/views/reservation.html',
@@ -45,4 +45,21 @@ angular.module('myApp', [
         .otherwise({
             redirectTo: '/main'
         });
-}]);
+}])
+    .run(['$rootScope', 'AuthenticationService', function ($rootScope, AuthenticationService) {
+        $rootScope.logout = function () {
+            AuthenticationService.logout();
+        };
+        $rootScope.isAdmin = function () {
+            var user = AuthenticationService.currentUser();
+            if(user !== undefined || user != null){
+                console.log("is admin? " + user.role.toLowerCase() + " " + (user.role.toLowerCase() == 'admin'));
+                return user.role.toLowerCase() == 'admin';
+            }
+            return false;
+
+        };
+        $rootScope.isLoggedIn = function () {
+            return AuthenticationService.isLoggedIn();
+        }
+    }]);

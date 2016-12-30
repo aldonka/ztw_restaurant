@@ -8,7 +8,12 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
+var auth = require('../auth_config');
+// var jwt = require('express-jwt');
+// var auth = jwt({
+//     secret: 'SECRET',
+//     userProperty: 'payload'
+// });
 
 function getAll (req, res) {
     dish.findAll(function (error, comments) {
@@ -51,8 +56,8 @@ function remove(req, res) {
 router.post('/comments', create);
 router.get('/comments', getAll);
 router.get('/comments/:id', findById);
-router.get('/comments/dish/:id', findByDishId);
-router.put('/comments/:id', update);
-router.delete('/comments/:id', remove);
+router.get('/comments/dish/:id', auth.auth, findByDishId);
+router.put('/comments/:id', auth.auth, update);
+router.delete('/comments/:id', auth.auth, remove);
 
 module.exports = router;

@@ -3,22 +3,28 @@
  */
 angular.module('myApp')
     .value('DishLoc', '/dishes/:id')
-    .factory('Dish', ['$resource', 'DishLoc', 'Path', function ($resource, DishLoc, Path) {
+    .factory('Dish', ['$resource', 'DishLoc', 'Path', 'AuthenticationService', function ($resource, DishLoc, Path, AuthenticationService) {
         return $resource(Path + DishLoc, {id: null}, {
-            get : {
+            get: {
                 method: 'GET',
-                isArray : true
+                isArray: true
             },
             getById: {
                 method: 'GET',
                 isArray: false
             },
-            create : {
-                method: 'POST'
+            create: {
+                method: 'POST',
+                headers: {
+                    Authorization: 'Bearer ' + AuthenticationService.getToken()
+                }
             },
             delete: {
                 method: 'DELETE',
-                isArray: false
+                isArray: false,
+                headers: {
+                    Authorization: 'Bearer ' + AuthenticationService.getToken()
+                }
             }
         });
     }]);

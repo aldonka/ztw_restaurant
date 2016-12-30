@@ -3,7 +3,7 @@
  */
 angular.module('myApp')
     .value('CommentsLoc', '/comments/:id')
-    .factory('Comment', ['$resource', 'CommentsLoc', 'Path', function ($resource, CommentsLoc, Path) {
+    .factory('Comment', ['$resource', 'CommentsLoc', 'Path', 'AuthenticationService', function ($resource, CommentsLoc, Path, AuthenticationService) {
         return $resource(Path + CommentsLoc, {id: null}, {
             get : {
                 method: 'GET',
@@ -16,14 +16,20 @@ angular.module('myApp')
             getByDishId: {
                 method: 'GET',
                 url: Path + '/comments/dish/:id',
-                isArray: true
+                isArray: true,
+                headers: {
+                    Authorization: 'Bearer '+ AuthenticationService.getToken()
+                }
             },
             create : {
                 method: 'POST'
             },
             delete: {
                 method: 'DELETE',
-                isArray: false
+                isArray: false,
+                headers: {
+                    Authorization: 'Bearer '+ AuthenticationService.getToken()
+                }
             }
         });
     }]);

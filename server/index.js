@@ -9,12 +9,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var passport = require('passport');
-var jwt = require('express-jwt');
-var auth = jwt({
-    secret: 'SECRET',
-    userProperty: 'payload'
-});
-
+var auth = require('./auth_config');
 var cors = require('cors');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -64,6 +59,13 @@ require('./reservarions/model');
 require('./comments/model');
 
 app.use(passport.initialize());
+
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401);
+        res.json({"message" : err.name + ": " + err.message});
+    }
+});
 
 app.use('/api', require('./users/router'));
 app.use('/api', require('./categories/router'));
