@@ -11,13 +11,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body ng-app="myApp">
+<div ng-parallax pattern="'app/img/parallax/pinapple2_pattern.jpg'" speed="2" reverse="true"/>
 <ng-include src="'app/views/nav_bar.html'"></ng-include>
 <div ng-view></div>
 <footer id="footer" class="footer">
     <div class="muted credit container">
-        <div class="col-md-6"><ul>
-            <li>O nas</li>
-        </ul></div>
+        <div class="col-md-6">
+            <ul>
+                <li>O nas</li>
+            </ul>
+        </div>
         <div class="col-md-6"></div>
     </div>
 </footer>
@@ -30,6 +33,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
 <script src="scripts/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
 <script src="scripts/socket.io-client/dist/socket.io.js"></script>
+<script src="scripts/ng-parallax/src/ngParallax.min.js"></script>
 <!--app dependency-->
 <script src="app/app.js"></script>
 
