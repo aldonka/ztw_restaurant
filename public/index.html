@@ -6,14 +6,19 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body ng-app="myApp">
-<div ng-parallax pattern="'app/img/parallax/pinapple2_pattern.jpg'" speed="2" reverse="true"/>
+<div ng-parallax pattern="'app/img/parallax/img05.jpg'" speed="3" reverse="true"/>
 <ng-include src="'app/views/nav_bar.html'"></ng-include>
-<div ng-view></div>
+<div class="container">
+    <ng-include src="'app/views/carousel.html'"></ng-include>
+    <div class="row" ng-view></div>
+</div>
+
 <footer id="footer" class="footer">
     <div class="muted credit container">
         <div class="col-md-6">
@@ -41,6 +46,7 @@
 <script src="app/controllers/adminCtrl.js"></script>
 <script src="app/controllers/menuCtrl.js"></script>
 <script src="app/controllers/dishCtrl.js"></script>
+<script src="app/controllers/carouselCtrl.js"></script>
 <script src="app/controllers/ui.bootstrapCtrl.js"></script>
 
 <script src="app/resources/dishResource.js"></script>
