@@ -3,12 +3,18 @@
         <h1 class="h2">Dodaj nową potrawe</h1>
         <form ng-submit="addDish()" ng-init="newDish = {}">
             <div class="form-group">
-                <label for="name">Dish name:</label>
+                <label for="name">Nazwa:</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter name"
                        ng-model="newDish.name">
             </div>
+            <div class="form-group col-md-2">
+                <label for="dish_category">Kategoria:</label>
+                <select type="" class="form-control" id="dish_category"  ng-model="newReservation.table">
+                    <option ng-repeat="category in categories">{{category}}</option>
+                </select>
+            </div>
             <div class="form-group">
-                <label for="price">Password</label>
+                <label for="price">Cana:</label>
                 <input type="number" class="form-control" id="price" placeholder="Price"
                        ng-model="newDish.price">
             </div>
@@ -16,15 +22,6 @@
                 <label for="desc">Description</label>
                 <input type="text" class="form-control" id="desc" placeholder="Price"
                        ng-model="newDish.description">
-            </div>
-            <div class="form-group">
-                <label for="category">Category</label>
-                <select type="" class="form-control" id="category" placeholder="Category" ng-model="newDish.category">
-                    <option>przystawka</option>
-                    <option>danie główne</option>
-                    <option>pizza</option>
-                    <option>napoje</option>
-                </select>
             </div>
             <div class="form-group">
                 <label for="img">Image</label>

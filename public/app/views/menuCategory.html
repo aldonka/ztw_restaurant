@@ -1,0 +1,21 @@
+<div class="row">
+    <h3 class="h3">{{category}}</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Obrazek</th>
+            <th>Opis</th>
+            <th>Cena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="dish in dishes" ng-click="getDish(dish._id)">
+            <td>{{dish.name}}</td>
+            <td><img src="{{dish.img}}" class="img img-responsive" height="100px"></td>
+            <td>{{dish.description}}</td>
+            <td>{{dish.price | currency}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

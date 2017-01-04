@@ -2,7 +2,7 @@
  * Created by Dominika on 2016-12-26.
  */
 angular.module('myApp')
-    .controller('menuCtrl', ['$scope', '$rootScope', '$location','DishService',  function ($scope, $rootScope, $location, DishService) {
+    .controller('menuCtrl', ['$scope', '$rootScope', '$location','DishService', 'CategoriesService',  function ($scope, $rootScope, $location, DishService,CategoriesService) {
         function getAllDishes() {
             DishService.getAll(function (dishes) {
                 $scope.dishes = dishes;
@@ -18,6 +18,8 @@ angular.module('myApp')
                 });
             });
         };
+
+        $scope.categories = CategoriesService.getCategories();
 
         $scope.getDish = function (id) {
                 $location.path("/dish/" + id);
