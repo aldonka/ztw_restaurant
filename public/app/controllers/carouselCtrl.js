@@ -6,7 +6,19 @@ angular.module('myApp')
         $scope.myInterval = 5000;
         $scope.noWrapSlides = false;
         $scope.active = 0;
-        var slides = $scope.slides = ["app/img/slides/img05.jpg", "app/img/slides/img06.jpg", "app/img/slides/img07.jpg", "app/img/slides/img08.jpg" ];
+        var slides = $scope.slides = [{
+            src: "app/img/slides/img05.jpg",
+            desc: "Dużo światła i zieleni"
+        },{
+            src: "app/img/slides/img06.jpg",
+            desc: "Duży, przestronny lokal"
+        },{
+            src: "app/img/slides/img07.jpg",
+            desc: "Pyszne potrawy, duże porcje"
+        },{
+            src: "app/img/slides/img08.jpg",
+            desc: "Zawsze świeże składniki"
+        }];
         var currIndex = 0;
 
         $scope.randomize = function () {

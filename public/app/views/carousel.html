@@ -2,10 +2,10 @@
     <div class="container">
         <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
             <div uib-slide ng-repeat="slide in slides track by $index" index="$index">
-                <img ng-src="{{slide}}" class="img img-responsive" style="height:650px; width: 100%;margin:auto;">
+                <img ng-src="{{slide.src}}" class="img img-responsive" style="height:650px; width: 100%;margin:auto;">
                 <div class="carousel-caption">
                     <div class="alert alert-dismissible alert-info">
-                        <strong>Restauracja Boska {{$index}}</strong>
+                        <strong>Restauracja Boska: {{slide.desc}}</strong>
                     </div>
                     <h1 class="h1"></h1>
                     <!--<p>{{slide.text}}</p>-->

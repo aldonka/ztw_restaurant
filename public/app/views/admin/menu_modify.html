@@ -1,6 +1,6 @@
-<div class="container">
-    <h2>Potrawy</h2>
-    <p>potrway i ich ceny:
+<div class="container jumbotron">
+    <h2 class="h2">Potrawy</h2>
+    <p>
         <a class="btn btn-primary" href="#/admin/menu/add">Dodaj potrawe</a>
     </p>
     <table class="table table-striped">
@@ -16,14 +16,14 @@
         </thead>
         <tbody>
         <tr ng-repeat="dish in dishes">
-            <td><strong>{{dish.name}}</strong></td>
-            <td><img src="{{dish.img}}" class="img img-responsive" height="100px"></td>
-            <td>{{dish.description}}</td>
-            <td>{{dish.price | currency}}</td>
-            <td>
+            <td class="col-md-2"><strong>{{dish.name}}</strong></td>
+            <td class="col-md-3"><img src="{{dish.img}}" class="img img-responsive" height="100px"></td>
+            <td class="col-md-3">{{dish.description}}</td>
+            <td class="col-md-1">{{dish.price | currency}}</td>
+            <td class="col-md-1">
                 <input type="checkbox" ng-checked="dish.avaliable" disabled>
             </td>
-            <td>
+            <td class="col-md-2">
                 <div class="btn-group-sm">
                     <button class="btn btn-warning" ng-click="">Modyfikuj</button>
                     <button class="btn btn-danger" ng-click="removeDish(dish._id)">Usuń</button>
