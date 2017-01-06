@@ -23,8 +23,8 @@ function createDish (req, res) {
 }
 
 function findById(req, res){
-    dish.findById(req.params.id, function (error, product) {
-        basic.handleResponse(error, product, req, res, 'error finding product id:' + req.params.id);
+    dish.findById(req.params.id, function (error, data) {
+        basic.handleResponse(error, data, req, res, 'error finding product id:' + req.params.id);
     })
 
 }

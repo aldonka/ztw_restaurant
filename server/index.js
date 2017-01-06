@@ -57,6 +57,7 @@ require('./categories/model');
 require('./dishes/model');
 require('./reservarions/model');
 require('./comments/model');
+require('./orders/model');
 
 app.use(passport.initialize());
 
@@ -72,6 +73,7 @@ app.use('/api', require('./categories/router'));
 app.use('/api', require('./dishes/router'));
 app.use('/api', require('./reservarions/router'));
 app.use('/api', require('./comments/router'));
+app.use('/api', require('./orders/router'));
 
 // FINALLY, use any error handlers
 // app.use(require('app/errors/not-found'))
