@@ -2,7 +2,16 @@
  * Created by Dominika on 2016-12-26.
  */
 angular.module('myApp')
-    .controller('menuCtrl', ['$scope', '$rootScope', '$location', 'DishService', 'CategoriesService', 'InfoService', '$location', function ($scope, $rootScope, $location, DishService, CategoriesService, InfoService, $location) {
+    .controller('menuCtrl', ['$scope', '$rootScope', '$location', 'DishService', 'CategoriesService', 'InfoService', 'Socket', '$location', function ($scope, $rootScope, $location, DishService, CategoriesService, InfoService, Socket, $location) {
+        Socket.on('dish:added', function(data){
+            InfoService.showInfo("Dodano nową potrawe: " + data.name);
+            getAllDishes();
+        });
+        Socket.on('dish:modified', function(data){
+            InfoService.showInfo("Właśnie zmodyfikowano potrawę: " + data.name);
+            getAllDishes();
+        });
+
         function getAllDishes() {
             DishService.getAllAvaliable(function (dishes) {
                 $scope.dishes = dishes;

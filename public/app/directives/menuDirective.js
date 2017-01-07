@@ -2,7 +2,7 @@
  * Created by Dominika on 2017-01-04.
  */
 angular.module('myApp')
-    .directive('menuCategory', ['$rootScope', '$location','DishService', function ($rootScope, $location, DishService) {
+    .directive('menuCategory', ['$rootScope', '$location', 'DishService', 'Socket', function ($rootScope, $location, DishService, Socket) {
         return {
             scope: {
                 category: '@',
@@ -18,9 +18,9 @@ angular.module('myApp')
             },
             compile: function (element, attrs) {
                 return {
-                    pre: function preLink( scope, element, attributes ) {
+                    pre: function preLink(scope, element, attributes) {
                         DishService.getAllAvaliable(function (data) {
-                            scope.dishes = getDishesWithCategory(scope.category,data);
+                            scope.dishes = getDishesWithCategory(scope.category, data);
                         });
                     }
                 };
@@ -29,8 +29,8 @@ angular.module('myApp')
 
         function getDishesWithCategory(category, dishes) {
             var result = [];
-            for(var i=0; i< dishes.length; i++){
-                if(dishes[i].category == category.toLowerCase()){
+            for (var i = 0; i < dishes.length; i++) {
+                if (dishes[i].category == category.toLowerCase()) {
                     result.push(dishes[i]);
                 }
             }

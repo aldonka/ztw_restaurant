@@ -2,7 +2,7 @@
  * Created by Dominika on 2016-11-27.
  */
 angular.module('myApp')
-    .service('InfoService', ['$timeout','$rootScope', function ($timeout, $rootScope) {
+    .service('InfoService', ['$timeout','$rootScope', 'Socket', function ($timeout, $rootScope, Socket) {
 
         var info = {
             msg : "test",

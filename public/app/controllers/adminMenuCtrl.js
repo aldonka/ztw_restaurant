@@ -2,7 +2,7 @@
  * Created by Dominika on 2017-01-07.
  */
 angular.module('myApp')
-    .controller('adminMenuCtrl', ['$scope', '$rootScope', '$location', 'DishService', 'CategoriesService', 'InfoService', '$location', function ($scope, $rootScope, $location, DishService, CategoriesService, InfoService, $location) {
+    .controller('adminMenuCtrl', ['$scope', '$rootScope', '$location', 'DishService', 'CategoriesService', 'InfoService', '$location', 'Socket', function ($scope, $rootScope, $location, DishService, CategoriesService, InfoService, $location) {
         function getAllDishes() {
             DishService.getAll(function (dishes) {
                 $scope.dishes = dishes;
@@ -28,7 +28,6 @@ angular.module('myApp')
 
         $scope.prepareModify = function (dishId, index) {
             $scope.modifiedDish= $scope.dishes[index];
-            console.log(JSON.stringify($scope.modifiedDish) + " dish" + dishId);
 
         };
 
@@ -47,14 +46,14 @@ angular.module('myApp')
             })
         };
 
-        $scope.checkAllergen = function (index) {
-            var allergenIndex = arrContainsElem($scope.modifiedDish.allergens, $scope.allergens[index]);
+        $scope.checkAllergen = function (obj, index) {
+            var allergenIndex = arrContainsElem(obj.allergens, $scope.allergens[index]);
             if (allergenIndex == -1) {
-                $scope.modifiedDish.allergens.push($scope.allergens[index]);
-                console.log("Allergeny: " + $scope.modifiedDish.allergens);
+                obj.allergens.push($scope.allergens[index]);
+                console.log("Allergeny: " + obj.allergens);
             }else{
-                $scope.modifiedDish.allergens.splice(allergenIndex, 1);
-                console.log("Allergeny: " + $scope.modifiedDish.allergens);
+                obj.allergens.splice(allergenIndex, 1);
+                console.log("Allergeny: " + obj.allergens);
             }
         };
 

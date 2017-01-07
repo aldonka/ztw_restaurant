@@ -15,6 +15,20 @@ angular.module('myApp')
             }
         });
 
+        Socket.on('dish:added', function(data){
+                InfoService.showInfo("Dodano nową potrawe: " + data.name);
+        });
+
+        Socket.on('dish:modified', function(data){
+            var urlArr = $location.url().split('/');
+            var id = urlArr[urlArr.length-1];
+
+            if(id == data._id){
+                $scope.dish = data;
+                InfoService.showInfo("Właśnie zmodyfikowano potrawę, którą przeglądasz");
+            }
+        });
+
         $scope.ingradients = DishService.getIngradients();
         $scope.allergens = DishService.getAllergens();
 

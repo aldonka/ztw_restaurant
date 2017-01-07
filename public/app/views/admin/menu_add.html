@@ -28,7 +28,7 @@
                 <label>Allergeny: </label>
                 <span class="checkbox">
                     <label ng-repeat="i in allergens">
-                    <input type="checkbox" value="{{$index}}" ng-click="checkAllergen($index)"/> {{i}}
+                    <input type="checkbox" value="{{$index}}" ng-click="checkAllergen(newDish, $index)"/> {{i}}
                 </label>
                 </span>
 

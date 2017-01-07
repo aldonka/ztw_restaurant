@@ -38,7 +38,7 @@
                 </ul>
                 <div ng-show="modifiedDish._id == dish._id" class="checkbox">
                     <label ng-repeat="i in allergens">
-                        <input type="checkbox" value="{{$index}}" ng-click="checkAllergen($index)"/> {{i}}
+                        <input type="checkbox" value="{{$index}}" ng-click="checkAllergen(modifiedDish, $index)"/> {{i}}
                     </label>
                 </div>
             </td>

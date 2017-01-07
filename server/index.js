@@ -41,8 +41,18 @@ io.on('connection', function(socket){
     });
 
     socket.on('comment:remove', function (data) {
-        console.log('A product has been removed: ' + data);
+        console.log('A comment has been removed: ' + data);
         socket.broadcast.emit('comment:removed', data);
+    });
+
+    socket.on('dish:add', function (data) {
+        console.log('A dish has been added: ' + data);
+        socket.broadcast.emit('dish:added', data);
+    });
+
+    socket.on('dish:modify', function (data) {
+        console.log('A dish has been added: ' + data);
+        socket.broadcast.emit('dish:modified', data);
     });
 
 });
