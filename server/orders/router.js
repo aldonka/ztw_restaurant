@@ -42,10 +42,10 @@ function remove(req, res) {
 }
 var pathName = '/orders';
 
-router.post(pathName , auth.auth, create);
+router.post(pathName , create);
 router.get(pathName, getAll);
 router.get(pathName + '/:id', findById);
-router.put(pathName + '/:id', auth.auth, update);
+router.put(pathName + '/:id', update);
 router.delete(pathName + '/:id', auth.auth, remove);
 
 module.exports = router;
