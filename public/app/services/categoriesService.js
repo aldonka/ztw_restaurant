@@ -3,7 +3,7 @@
  */
 angular.module('myApp')
     .service('CategoriesService', ['$rootScope', function ($rootScope) {
-        var categories = ["śniadania", "obiady", "zupy", "sałatki", "pizza", "deser", "kawa", "herbata i napoje"];
+        var categories = ["śniadania", "obiady", "zupy", "pizza", "deser", "kawa", "herbata i napoje"];
 
         return {
             getCategories: function () {

@@ -1,19 +1,19 @@
 <div class="container jumbotron">
     <div class="col-md-push-2 col-md-8">
         <h1 class="h2">Dodaj nową potrawe</h1>
-        <form ng-submit="addDish()" ng-init="newDish = {}">
+        <form ng-submit="addDish()" ng-init="newDish = { allergens: []}">
             <div class="form-group">
                 <label for="name">Nazwa:</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter name"
                        ng-model="newDish.name">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-8">
                 <label for="dish_category">Kategoria:</label>
-                <select type="" class="form-control" id="dish_category"  ng-model="newDish.category">
+                <select type="" class="form-control" id="dish_category" ng-model="newDish.category">
                     <option ng-repeat="category in categories">{{category}}</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-4">
                 <label for="price">Cana:</label>
                 <input type="number" class="form-control" id="price" placeholder="Price"
                        ng-model="newDish.price">
@@ -22,6 +22,16 @@
                 <label for="desc">Description</label>
                 <input type="text" class="form-control" id="desc" placeholder="Price"
                        ng-model="newDish.description">
+            </div>
+
+            <div class="form-group">
+                <label>Allergeny: </label>
+                <span class="checkbox">
+                    <label ng-repeat="i in allergens">
+                    <input type="checkbox" value="{{$index}}" ng-click="checkAllergen($index)"/> {{i}}
+                </label>
+                </span>
+
             </div>
             <div class="form-group">
                 <label for="img">Image</label>

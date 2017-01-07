@@ -3,6 +3,9 @@
  */
 angular.module('myApp')
     .service('DishService', ['$timeout', '$location', '$rootScope', 'Dish', 'InfoService', function ($timeout, $location, $rootScope, Dish, InfoService) {
+        var allergens = [ 'mleko', 'gluten', 'orzechy'];
+        var ingradients = ['warzywa', 'owoce', 'mleko', 'toffi', 'makaron', 'ryż', 'kasza jaglana'];
+
         return {
             create: function (dish, callback) {
                 if(dish != null && dish !== undefined && dish.name.length > 0){
@@ -15,8 +18,20 @@ angular.module('myApp')
             getAll: function (callback) {
                 Dish.get({}, callback);
             },
+            getAllAvaliable: function (callback) {
+                Dish.getAvaliable({}, callback);
+            },
+            update: function (dish, callback) {
+                Dish.update({id: dish._id}, dish, callback )
+            },
             delete: function (id, callback) {
                 Dish.delete({id : id}, callback);
+            },
+            getAllergens: function () {
+                return allergens;
+            },
+            getIngradients: function () {
+                return ingradients;
             }
         };
     }]);

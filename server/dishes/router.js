@@ -16,6 +16,12 @@ function getDishes (req, res) {
     });
 }
 
+function getAvaliableDishes (req, res) {
+    dish.findAllAvaliable(function (error, dishes) {
+        basic.handleResponse(error, dishes, req, res, 'error finding avaliable dishes');
+    });
+}
+
 function createDish (req, res) {
     dish.create(req.body, function (error, dish) {
         basic.handleResponse(error, dish, req, res, 'error while creating reservation');
@@ -42,7 +48,8 @@ function remove(req, res) {
 }
 
 router.post('/dishes', auth.auth, createDish);
-router.get('/dishes', getDishes);
+router.get('/dishes', auth.auth, getDishes);
+router.get('/dishes/avaliable', getAvaliableDishes);
 router.get('/dishes/:id', findById);
 router.put('/dishes/:id', auth.auth, update);
 router.delete('/dishes/:id', auth.auth, remove);

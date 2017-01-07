@@ -19,7 +19,7 @@ angular.module('myApp')
             compile: function (element, attrs) {
                 return {
                     pre: function preLink( scope, element, attributes ) {
-                        DishService.getAll(function (data) {
+                        DishService.getAllAvaliable(function (data) {
                             scope.dishes = getDishesWithCategory(scope.category,data);
                         });
                     }

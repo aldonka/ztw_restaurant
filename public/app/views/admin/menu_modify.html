@@ -2,13 +2,14 @@
     <h2 class="h2">Potrawy</h2>
     <p>
         <a class="btn btn-primary" href="#/admin/menu/add">Dodaj potrawe</a>
-    </p>
+        <button class="btn btn-danger" ng-click="showRemoveBtns = !showRemoveBtns">Usuń potrawy</button>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Nazwa</th>
             <th>Obrazek</th>
             <th>Opis</th>
+            <th>Alergeny</th>
             <th>Cena</th>
             <th>Dostępność</th>
             <th>Akcja</th>
@@ -16,17 +17,50 @@
         </thead>
         <tbody>
         <tr ng-repeat="dish in dishes">
-            <td class="col-md-2"><strong>{{dish.name}}</strong></td>
-            <td class="col-md-3"><img src="{{dish.img}}" class="img img-responsive" height="100px"></td>
-            <td class="col-md-3">{{dish.description}}</td>
-            <td class="col-md-1">{{dish.price | currency}}</td>
+            <td class="col-md-2">
+                <strong ng-show="modifiedDish._id != dish._id">{{dish.name}}</strong>
+                <input ng-show="modifiedDish._id == dish._id" type="text" ng-model="modifiedDish.name"/>
+            </td>
+            <td class="col-md-3">
+                <img ng-show="modifiedDish._id != dish._id" src="{{dish.img}}" class="img img-responsive"
+                     height="100px">
+                <input ng-show="modifiedDish._id == dish._id" type="text" ng-model="modifiedDish.img"/>
+            </td>
+            <td class="col-md-3">
+                <span ng-show="modifiedDish._id != dish._id">{{dish.description}}</span>
+                <textarea rows="3" ng-show="modifiedDish._id == dish._id" ng-model="modifiedDish.description"/>
+            </td>
+            <td class="col-md-3">
+                <ul ng-show="modifiedDish._id != dish._id">
+                    <li ng-repeat="allergen in dish.allergens">
+                        {{allergen}}
+                    </li>
+                </ul>
+                <div ng-show="modifiedDish._id == dish._id" class="checkbox">
+                    <label ng-repeat="i in allergens">
+                        <input type="checkbox" value="{{$index}}" ng-click="checkAllergen($index)"/> {{i}}
+                    </label>
+                </div>
+            </td>
             <td class="col-md-1">
-                <input type="checkbox" ng-checked="dish.avaliable" disabled>
+                <span ng-show="modifiedDish._id != dish._id">{{dish.price | currency}}</span>
+                <input ng-show="modifiedDish._id == dish._id" type="number" ng-model="modifiedDish.price"/>
+            </td>
+            <td class="col-md-1">
+                <input ng-show="modifiedDish._id != dish._id" type="checkbox" ng-checked="dish.avaliable" disabled>
+                <input ng-show="modifiedDish._id == dish._id" type="checkbox" ng-model="modifiedDish.avaliable"/>
             </td>
             <td class="col-md-2">
                 <div class="btn-group-sm">
-                    <button class="btn btn-warning" ng-click="">Modyfikuj</button>
-                    <button class="btn btn-danger" ng-click="removeDish(dish._id)">Usuń</button>
+                    <button class="btn btn-warning" ng-show="modifiedDish._id != dish._id"
+                            ng-click="prepareModify(dish._id, $index)">Modyfikuj
+                    </button>
+                    <button class="btn btn-primary" ng-show="modifiedDish._id == dish._id" ng-click="modifyDish()">
+                        Modyfikuj
+                    </button>
+                    <button ng-show="showRemoveBtns" class="btn btn-danger sample-show-hide"
+                            ng-click="removeDish(dish._id)">Usuń
+                    </button>
                 </div>
             </td>
         </tr>

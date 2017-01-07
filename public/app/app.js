@@ -32,11 +32,11 @@ angular.module('myApp', [
         })
         .when('/admin/menu/add', {
             templateUrl: 'app/views/admin/menu_add.html',
-            controller: 'menuCtrl'
+            controller: 'adminMenuCtrl'
         })
         .when('/admin/menu/modify', {
             templateUrl: 'app/views/admin/menu_modify.html',
-            controller: 'menuCtrl'
+            controller: 'adminMenuCtrl'
         })
         .when('/admin/register', {
             templateUrl: 'app/views/admin/register.html',

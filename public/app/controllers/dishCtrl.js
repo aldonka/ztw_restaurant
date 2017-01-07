@@ -15,6 +15,9 @@ angular.module('myApp')
             }
         });
 
+        $scope.ingradients = DishService.getIngradients();
+        $scope.allergens = DishService.getAllergens();
+
         (function () {
             var urlArr = $location.url().split('/');
             var id = urlArr[urlArr.length-1];

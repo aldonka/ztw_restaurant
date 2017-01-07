@@ -7,7 +7,15 @@ angular.module('myApp')
         return $resource(Path + DishLoc, {id: null}, {
             get: {
                 method: 'GET',
-                isArray: true
+                isArray: true,
+                headers: {
+                    Authorization: 'Bearer ' + AuthenticationService.getToken()
+                }
+            },
+            getAvaliable: {
+                method: 'GET',
+                isArray: true,
+                url: Path + DishLoc + "/avaliable"
             },
             getById: {
                 method: 'GET',
@@ -15,6 +23,12 @@ angular.module('myApp')
             },
             create: {
                 method: 'POST',
+                headers: {
+                    Authorization: 'Bearer ' + AuthenticationService.getToken()
+                }
+            },
+            update: {
+                method: 'PUT',
                 headers: {
                     Authorization: 'Bearer ' + AuthenticationService.getToken()
                 }
