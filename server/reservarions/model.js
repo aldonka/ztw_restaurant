@@ -11,7 +11,7 @@ var ReservationSchema = new mongoose.Schema({
     date: Date,
     table: Number,
     duration: Number,
-    category: String
+    order: Array
 
 });
 

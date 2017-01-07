@@ -16,10 +16,7 @@ angular.module('myApp')
             getByDishId: {
                 method: 'GET',
                 url: Path + '/comments/dish/:id',
-                isArray: true,
-                headers: {
-                    Authorization: 'Bearer '+ AuthenticationService.getToken()
-                }
+                isArray: true
             },
             create : {
                 method: 'POST'

@@ -3,7 +3,6 @@
  */
 function handleResponse(error, data, req, res, msg){
     if (error) {
-        log.error(error, msg);
         res.status(500).send(error);
         return
     }

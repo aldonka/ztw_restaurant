@@ -1,0 +1,21 @@
+<div class="container jumbotron">
+    <h2 class="h1">Rezerwacje</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Osoba</th>
+            <th>Stolik</th>
+            <th>Dzień</th>
+            <th>Posiłki</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="reservation in reservations">
+            <td>{{reservation.name}} {{reservation.surname}}</td>
+            <td>{{reservation.table}}</td>
+            <td>{{reservation.date}}</td>
+            <td>{{reservation.order}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

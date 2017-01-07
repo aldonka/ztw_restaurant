@@ -50,6 +50,10 @@ angular.module('myApp', [
             templateUrl: 'app/views/employee/orders.html',
             controller: 'adminCtrl'
         })
+        .when('/employee/reservations',{
+            templateUrl: 'app/views/employee/reservations.html',
+            controller: 'reservationCtrl'
+        })
         .otherwise({
             redirectTo: '/main'
         });
