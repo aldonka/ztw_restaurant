@@ -12,3 +12,15 @@
 .myfooter{
     margin-top: 100px;
 }
+
+.addspace{
+    margin-bottom: 30px;
+}
+
+.table-new-colour{
+    background-color: beige;
+}
+
+.remove-padding{
+    margin: 0px;
+}

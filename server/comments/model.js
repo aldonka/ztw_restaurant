@@ -8,7 +8,8 @@ var CommentSchema = new mongoose.Schema({
     timestamp: Date,
     email: String,
     content: String,
-    dishId: String
+    dishId: String,
+    stars: Number
 
 });
 
@@ -40,9 +41,14 @@ function findByDishId(dishId, callback) {
     Comment.find({dishId: dishId}, callback);
 }
 
+function countDishComments(dishId, callback){
+    Comment.count({dishId: dishId}, callback);
+}
+
 exports.findAll = findAll;
 exports.create = create;
 exports.findById = findById;
 exports.findByDishId = findByDishId;
 exports.update = update;
 exports.remove = remove;
+exports.countDishComments = countDishComments;

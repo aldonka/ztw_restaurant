@@ -28,8 +28,9 @@ angular.module('myApp')
         $scope.addComment = function () {
             console.log(JSON.stringify($scope.comment));
             $scope.comment.dishId = $scope.dish._id;
-            CommentService.create($scope.comment, function (comment) {
-                console.log("Comment added");
+            CommentService.create($scope.comment, function (newDish) {
+                $scope.comments.push($scope.comment);
+                $scope.dish = newDish;
             });
         }
     }]);

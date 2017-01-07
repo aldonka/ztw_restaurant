@@ -8,7 +8,6 @@ angular.module('myApp')
                 if (comment != null && comment !== undefined && comment.content.length > 0) {
                     Comment.create(comment, callback);
                     Socket.emit('comment:add', comment);
-                    $window.location.reload();
                 }
             },
             get: function (id, callback) {

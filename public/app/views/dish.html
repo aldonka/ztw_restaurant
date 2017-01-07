@@ -7,6 +7,7 @@
         <div class="row">
             <h3 class="h3">
                 Potrawa: {{dish.category}} {{dish.name}}
+                <span uib-rating  class="col-md-push-2 col-md-4" ng-model="dish.stars" read-only="true" titles="['one','two','three']" aria-labelledby="default-rating"></span>
                 <strong class="pull-right text-warning">{{dish.price | currency}}</strong>
             </h3>
             <div class="col-md-4">
@@ -44,7 +45,11 @@
             <div class="col-md-4">
                 <form ng-submit="addComment()">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="podpis" ng-model="comment.author"/>
+                        <input class="form-control col-md-6" type="text" placeholder="podpis" ng-model="comment.author"/>
+                        <div>
+                            <strong class="col-md-6"> Ocena:</strong>
+                            <span uib-rating  class="col-md-6" ng-model="comment.stars" read-only="false" on-hover="overStar = value; percent = 100 * (value / 5);" on-leave="overStar = null"  titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                        </div>
                         <input class="form-control" type="email" placeholder="email" ng-model="comment.email"/>
                         <textarea rows="4" class="form-control" placeholder="tesc komentarza.."  ng-model="comment.content"/>
                         <button class="col-md-12 btn btn-sm btn-primary" type="submit">Dodaj komentarz</button>
@@ -64,7 +69,8 @@
                     <tr ng-repeat="comment in comments">
                         <td class="col-md-2">{{comment.author}}</td>
                         <td class="col-md-2">{{comment.email}}</td>
-                        <td class="col-md-8">{{comment.content}}</td>
+                        <td class="col-md-2"><span uib-rating  ng-model="comment.stars" read-only="true" titles="['one','two','three']" aria-labelledby="default-rating"></span></td>
+                        <td class="col-md-6">{{comment.content}}</td>
                     </tr>
                     </tbody>
                 </table>

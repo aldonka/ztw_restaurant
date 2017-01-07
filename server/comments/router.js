@@ -1,7 +1,8 @@
 /**
  * Created by Dominika on 2016-12-27.
  */
-var dish = require('./model');
+var comment = require('./model');
+var dish = require('../dishes/model');
 var router = require('express').Router();
 var basic = require('../basic');
 var express = require('express');
@@ -11,40 +12,59 @@ var io = require('socket.io')(http);
 var auth = require('../auth_config');
 
 function getAll (req, res) {
-    dish.findAll(function (error, comments) {
+    comment.findAll(function (error, comments) {
         basic.handleResponse(error, comments, req, res, 'error finding dishes');
     });
 }
 
 function findByDishId(req, res){
-    dish.findByDishId(req.params.id, function (error, comments) {
+    comment.findByDishId(req.params.id, function (error, comments) {
         basic.handleResponse(error, comments, req, res, 'error finding product id:' + req.params.id);
     })
 
 }
 
 function create (req, res) {
-    dish.create(req.body, function (error, comment) {
-        basic.handleResponse(error, comment, req, res, 'error while creating reservation');
+    comment.create(req.body, function (error, comment) {
+        recalculateDishStars(req.body.dishId, function (error, data) {
+            basic.handleResponse(error, data, req, res, 'error while creating comment and updating dish rating.');
+        });
+
     });
 }
 
 function findById(req, res){
-    dish.findById(req.params.id, function (error, comment) {
+    comment.findById(req.params.id, function (error, comment) {
         basic.handleResponse(error, comment, req, res, 'error finding comment id:' + req.params.id);
     })
 
 }
 
 function update(req, res){
-    dish.update(req.body, function (error, comment) {
+    comment.update(req.body, function (error, comment) {
         basic.handleResponse(error, comment, req, res, 'error while updating reservation id: ' + req.params.id);
     });
 }
 
 function remove(req, res) {
-    dish.remove(req.params.id, function (error, comment) {
+    comment.remove(req.params.id, function (error, comment) {
         basic.handleResponse(error, comment, req, res, 'error removing reservation id: ' + req.params.id);
+    });
+}
+
+function recalculateDishStars(dishId, callback) {
+    comment.findByDishId(dishId,function (error, comments){
+        var sum = 0, len = 0;
+        for(var i =0; i < comments.length; i++){
+            if(comments[i].stars != null){
+                sum += comments[i].stars;
+                len++;
+            }
+        }
+        var stars = Math.round(sum/len);
+            dish.updateStars(dishId, stars, function (error, newDish) {
+                callback(error, newDish);
+            });
     });
 }
 

@@ -1,3 +1,5 @@
 <div class="container jumbotron">
-    <menu-category ng-repeat="category in categories" category="{{category}}" dishes="dishes"></menu-category>
+    <div ng-repeat="category in categories">
+        <menu-category category="{{category}}" ></menu-category>
+    </div>
 </div>

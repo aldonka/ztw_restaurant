@@ -1,21 +1,16 @@
 <div class="row">
     <h3 class="h3">{{category}}</h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Nazwa</th>
-            <th>Obrazek</th>
-            <th>Opis</th>
-            <th>Cena</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="dish in dishes" ng-click="getDish(dish._id)">
-            <td>{{dish.name}}</td>
-            <td><img src="{{dish.img}}" class="img img-responsive" height="100px"></td>
-            <td>{{dish.description}}</td>
-            <td>{{dish.price | currency}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="grid">
+        <div class="col-md-4" ng-repeat="dish in dishes">
+            <div class="row">
+                <strong class="col-md-4">{{dish.name}}</strong>
+                <strong class="text-warning col-md-push-2 col-md-2">{{dish.price|currency}}</strong>
+                <span uib-rating  class="col-md-push-2 col-md-4" ng-model="dish.stars" max="5" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+            </div>
+            <img src="{{dish.img}}" class="img img-responsive" height="320px"  width="400px " ng-click="getDish(dish._id)">
+        </div>
+    </div>
+</div>
+<div style="height: 200px">
+    <div ng-parallax pattern="'app/img/parallax/img01.jpg'" speed="10" reverse="true"/>
 </div>
