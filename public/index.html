@@ -17,6 +17,9 @@
 <ng-include src="'app/views/nav_bar.html'"></ng-include>
 <div class="container">
     <ng-include src="'app/views/carousel.html'"></ng-include>
+    <div ng-show="info !== undefined && info.show" class="sample-show-hide">
+        <div class="alert {{info.cssClass}}">{{info.msg}}</div>
+    </div>
     <div class="row" ng-view></div>
 </div>
 <ng-include src="'app/views/footer.html'"></ng-include>

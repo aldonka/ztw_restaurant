@@ -2,7 +2,7 @@
  * Created by Dominika on 2016-12-30.
  */
 angular.module('myApp')
-    .service('AuthenticationService', ['$timeout', '$window', '$rootScope', '$location', '$window', '$http', 'Path', function ($timeout, $window, $rootScope, $location, $window, $http, Path) {
+    .service('AuthenticationService', ['$timeout', '$window', '$rootScope', '$location', '$http', 'Path', 'InfoService', function ($timeout, $window, $rootScope, $location, $http, Path, InfoService) {
 
         var tokenName = 'restaurant-token';
 
@@ -16,6 +16,8 @@ angular.module('myApp')
 
         var logout = function () {
             $window.localStorage.removeItem(tokenName);
+            $location.path("/main");
+            InfoService.showInfo("Zostałeś wylogowany z serwisu.");
         };
 
         var isLoggedIn = function () {
@@ -56,6 +58,9 @@ angular.module('myApp')
         var login = function (user) {
             return $http.post(Path + '/login', user).success(function (data) {
                 saveToken(data.token);
+                InfoService.showSuccess("Zalogowałeś się do serwisu jako: " + user.username + " rola:" + user.role);
+            }).error(function (err) {
+                InfoService.showError("Nie udało sie zalogować do serwisu");
             });
         };
 

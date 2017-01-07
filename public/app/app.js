@@ -46,6 +46,10 @@ angular.module('myApp', [
             templateUrl: 'app/views/admin/users.html',
             controller: 'adminCtrl'
         })
+        .when('/employee/orders',{
+            templateUrl: 'app/views/employee/orders.html',
+            controller: 'adminCtrl'
+        })
         .otherwise({
             redirectTo: '/main'
         });
@@ -54,6 +58,8 @@ angular.module('myApp', [
         $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
             if ($location.path().indexOf("admin") > -1 && !AuthenticationService.isLoggedIn() && !$rootScope.isAdmin()) {
                 $location.path('/menu');
+            }else if($location.path().indexOf("employee") > -1 && !AuthenticationService.isLoggedIn() && !$rootScope.isAdmin()){
+                $location.path('/menu');
             }
         });
 
@@ -61,15 +67,22 @@ angular.module('myApp', [
             AuthenticationService.logout();
         };
         $rootScope.isAdmin = function () {
-            var user = AuthenticationService.currentUser();
-            if(user !== undefined || user != null){
-                console.log("is admin? " + user.role.toLowerCase() + " " + (user.role.toLowerCase() == 'admin'));
-                return user.role.toLowerCase() == 'admin';
-            }
-            return false;
-
+            return isRole('admin');
         };
+
+        $rootScope.isEmployee = function () {
+            return isRole('employee');
+        };
+
         $rootScope.isLoggedIn = function () {
             return AuthenticationService.isLoggedIn();
+        };
+
+        function isRole(role) {
+            var user = AuthenticationService.currentUser();
+            if(user !== undefined || user != null){
+                return user.role.toLowerCase() == role;
+            }
+            return false;
         }
     }]);
