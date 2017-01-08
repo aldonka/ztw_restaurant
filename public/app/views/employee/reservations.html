@@ -6,15 +6,21 @@
             <th>Osoba</th>
             <th>Stolik</th>
             <th>Dzień</th>
+            <th>Czas pobytu</th>
             <th>Posiłki</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="reservation in reservations">
+        <tr ng-repeat="reservation in reservations" class="{{getTodayColorClass(reservation.date)}}">
             <td>{{reservation.name}} {{reservation.surname}}</td>
             <td>{{reservation.table}}</td>
-            <td>{{reservation.date}}</td>
-            <td>{{reservation.order}}</td>
+            <td>{{reservation.date | date: 'yyyy-MM-dd HH:mm'}}</td>
+            <td>{{reservation.duration}} h</td>
+            <td>
+                <ul class="list">
+                    <li ng-repeat="o in reservation.order"> {{o.name}} x{{o.quantity}}</li>
+                </ul>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -18,7 +18,7 @@ var ReservationSchema = new mongoose.Schema({
 Reservation = mongoose.model('Reservation', ReservationSchema);
 
 function findAll(callback) {
-    Reservation.find(callback);
+    Reservation.find().sort({date: 1}).exec(callback);
 }
 
 function create(newReservation, callback) {

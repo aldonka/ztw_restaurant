@@ -14,9 +14,21 @@ angular.module('myApp')
         $scope.dateTimestamp = new Date();
         $scope.timeTimestamp = new Date();
 
+        $scope.getTodayColorClass = function (date) {
+            var rdate = new Date(date);
+            var today = new Date();
+            if (rdate.getDate() == today.getDate() &&
+                rdate.getMonth() == today.getMonth() &&
+                rdate.getYear() == today.getYear()) {
+                return 'text-warning';
+            }
+            else
+                return '';
+        };
+
         $scope.reserveTable = function () {
-            var d =$scope.dateTimestamp;
-            var t =$scope.timeTimestamp;
+            var d = $scope.dateTimestamp;
+            var t = $scope.timeTimestamp;
             $scope.newReservation.date = new Date(
                 d.getFullYear(),
                 d.getMonth(),
@@ -24,15 +36,40 @@ angular.module('myApp')
                 t.getHours() + 1,
                 t.getMinutes());
             ReservationService.create($scope.newReservation, function (reservation) {
-                $scope.newReservation = {};
-                $scope.dateTimestamp = new Date();
-                $scope.timeTimestamp = new Date();
-                InfoService.showSuccess("Utworzono rezerwacje w systemie dla: " + reservation.name + " " + reservation.surname + " na dzień: " + reservation.date.toLocaleString() );
+                $scope.clearData();
+                InfoService.showSuccess("Utworzono rezerwacje w systemie dla: " + reservation.name + " " + reservation.surname + " na dzień: " + reservation.date.toLocaleString());
             });
 
         };
 
-    //    datepicker settings and functions
+        $scope.clearData = function () {
+            $scope.newReservation = {};
+            $scope.dateTimestamp = new Date();
+            $scope.timeTimestamp = new Date();
+            $scope.order = [];
+            $scope.newOrder = {
+                order: []
+            };
+            $scope.wantTOrder = false;
+        };
+
+        $scope.order = [];
+        $scope.addDishToOrder = function (dish) {
+            var newOrder = {
+                name: dish.name,
+                quantity: dish.quantity
+            };
+            for (var i = 0; i < $scope.order.length; i++) {
+                if ($scope.order[i].name == newOrder.name) {
+                    InfoService.showWarning("Produkt jest już zamówiony!");
+                    return;
+                }
+            }
+            $scope.order.push(newOrder);
+            $scope.newReservation.order.push(newOrder);
+        };
+
+        //    datepicker settings and functions
 
         $scope.options = {
             // customClass: getDayClass,
@@ -40,7 +77,7 @@ angular.module('myApp')
             showWeeks: true
         };
 
-        $scope.setDate = function(year, month, day) {
+        $scope.setDate = function (year, month, day) {
             $scope.dateTimestamp = new Date(year, month, day);
             console.log("new date: " + $scope.dateTimestamp);
         };

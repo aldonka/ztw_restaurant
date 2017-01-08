@@ -1,0 +1,24 @@
+<div class="container">
+    <h2 class="h2">Zamówienie </h2>
+    <form>
+        <div class="row">
+            <div ng-repeat="o in order">
+                <strong class="col-md-8">{{o.name}} x{{o.quantity}}</strong>
+                <button class="col-md-4 btn btn-danger">Usuń</button>
+            </div>
+            <div class="form-inline">
+                <label for="order" class="col-md-2">Potrawa</label>
+                <select class="form-control col-md-8" id="order" ng-model="newOrder.name">
+                    <option ng-repeat="dish in dishes" value="{{dish.name}}">
+                        [{{dish.category}}] {{dish.name}}
+                    </option>
+                </select>
+                <input type="number" min="1" max="5" ng-model="newOrder.quantity" >
+                <button type="button" class="btn btn-success col-md-2" ng-click="addDishToOrder(newOrder)"><span class="glyphicon glyphicon-plus-sign"></span> Dodaj
+                </button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
