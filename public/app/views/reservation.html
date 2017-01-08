@@ -1,4 +1,4 @@
-<div class="container jumbotron">
+<div ng-controller="reservationCtrl" class="container jumbotron">
     <h1 class="h1">Rezerwacja</h1>
     <div class="row addspace">
         <div class="col-md-1"></div>
@@ -7,21 +7,18 @@
     <form ng-init="newReservation = {}" ng-submit="reserveTable()">
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group" ng-controller="DatepickerPopupDemoCtrl">
+                <div class="form-group">
                     <label>Data rezerwacji</label>
-                    <div uib-datepicker ng-model="newReservation.date" class="well well-sm"
+                    <div uib-datepicker ng-model="dateTimestamp" class="well well-sm"
                          datepicker-options="options"></div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="res_time">Godzina</label>
-                    <div uib-timepicker id="res_time" ng-model="newReservation.time" hour-step="1" minute-step="30"
-                         show-meridian="true"></div>
+                    <div uib-timepicker id="res_time" ng-model="timeTimestamp" hour-step="1" minute-step="30" show-meridian="true"></div>
                 </div>
                 <div class="form-group col-md-push-2 col-md-4">
                     <label for="res_duration">Długość:</label>
-                    <input type="date" class="form-control" id="res_duration" placeholder="Enter duration" min="1"
-                           max="3"
-                           ng-model="newReservation.duration">
+                    <input type="number" class="form-control" id="res_duration" placeholder="Enter duration" min="1" max="3" ng-model="newReservation.duration">
                 </div>
             </div>
             <div class="col-md-8">

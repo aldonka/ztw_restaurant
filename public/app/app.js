@@ -1,6 +1,6 @@
 'use strict';
 angular.module('myApp', [
-    'ngRoute', 'ngResource', 'ngAnimate', 'ngParallax', 'ui.bootstrap', 'uiBootstrapCtrl'
+    'ngRoute', 'ngResource', 'ngAnimate', 'ngParallax', 'ui.bootstrap'
 ])
     .value('Path', 'http://localhost:3000/api')
     .value('SocketPath', 'http://localhost:3880')

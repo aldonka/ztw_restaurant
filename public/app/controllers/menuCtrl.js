@@ -56,8 +56,4 @@ angular.module('myApp')
         };
 
 
-        $scope.reserveTable = function () {
-            console.log("Table reserved!" + $scope.newReservation.table + " on date:" + $scope.newReservation.date);
-        };
-
     }]);
