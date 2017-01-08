@@ -4,7 +4,7 @@
         <div class="col-md-1"></div>
         <img class="img img-responsive" src="app/img/zpw_restaurant.png" alt="sala restauracyjna"/>
     </div>
-    <form ng-init="newReservation = {order : []}" ng-submit="reserveTable()">
+    <form name="reservationForm" ng-init="newReservation = {order : []}" ng-submit="reserveTable()">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
@@ -17,15 +17,15 @@
                     <div uib-timepicker id="res_time" ng-model="timeTimestamp" hour-step="1" minute-step="30" show-meridian="true"></div>
                 </div>
                 <div class="form-group col-md-push-2 col-md-4">
-                    <label for="res_duration">Długość:</label>
-                    <input type="number" class="form-control" id="res_duration" placeholder="Enter duration" min="1" max="3" ng-model="newReservation.duration">
+                    <label for="res_duration">Długość: <span ng-show="reservationForm.res_duration.$invalid" class="text-danger">Możliwy zakres od 1h do 3h</span></label>
+                    <input type="number" class="form-control" id="res_duration" name="res_duration" placeholder="Enter duration" min="1" max="3" ng-model="newReservation.duration">
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="form-group col-md-2">
-                    <label for="table">Numer stolika</label>
+                    <label for="table">Numer stolika <span ng-show="reservationForm.table.$touched && reservationForm.table.$invalid" class="text-danger">Proszę wybrać stolik</span> </label>
                     <select type="" class="form-control" id="table" placeholder="Numer stolika"
-                            ng-model="newReservation.table">
+                            ng-model="newReservation.table" name ='table' required>
                         <option ng-value="1">1(5 osób)</option>
                         <option ng-value="2">2(4 osoby)</option>
                         <option ng-value="3">3(4 osoby)</option>
@@ -34,14 +34,16 @@
                     </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="name">Imie</label>
-                    <input type="text" class="form-control" id="name" placeholder="Imie zamawiającego"
-                           ng-model="newReservation.name">
+                    <label for="name">Imie <span ng-show="
+                    reservationForm.name.$touched && reservationForm.name.$invalid &&
+                    reservationForm.surname.$touched && reservationForm.surname.$invalid" class="text-danger">Prosze podać dane do rezerwacji</span></label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Imie zamawiającego"
+                           ng-model="newReservation.name" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="surname">Nazwisko</label>
-                    <input type="text" class="form-control" id="surname" placeholder="Nazwisko zamawiającego"
-                           ng-model="newReservation.surname">
+                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Nazwisko zamawiającego"
+                           ng-model="newReservation.surname" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="email">Email</label>
@@ -65,11 +67,19 @@
                         Tak, chcę dodać zamówienie
                     </label>
                 </div>
-
+            </div>
+            <div class="col-md-12">
+                <p>Zapoznaj się z regulaminem rezerwacji: <span ng-show="reservationForm.rules.$touched" class="text-danger">Pole wymagane.</span></p>
+                <div class="checkbox" required="">
+                    <label for="rules">
+                        <input type="checkbox" id="rules" name="rules" ng-model="rules"/>
+                        Akceptuje regulamin rezerwacji w restauraji Boska
+                    </label>
+                </div>
             </div>
         </div>
         <div class="row">
-            <button type="submit" class="btn btn-primary col-md-push-4 col-md-4">Rezerwuj!</button>
+            <button type="submit" class="btn btn-primary col-md-push-4 col-md-4" ng-disabled="reservationForm.$invalid">Rezerwuj!</button>
         </div>
     </form>
 </div>
