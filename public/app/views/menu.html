@@ -1,5 +1,14 @@
+<div class=" container-fluid col-md-push-1 col-md-1 nav nav-pills nav-stacked"  data-spy="affix" data-offset-top="0" >
+    <div class="btn-group-vertical" role="group">
+        <button ng-repeat="c in categories" ng-click="changeCategoryState(c)" type="button"
+                class="btn {{style[$index].btn}}">
+            <span class="glyphicon {{style[$index].glyphicon}}"></span> {{c}}
+        </button>
+    </div>
+</div>
+
 <div class="container jumbotron">
-    <div ng-repeat="category in categories">
-        <menu-category category="{{category}}" ></menu-category>
+    <div ng-show="style[$index].show" class="sample-show-hide" ng-repeat="category in categories">
+        <menu-category category="{{category}}"></menu-category>
     </div>
 </div>

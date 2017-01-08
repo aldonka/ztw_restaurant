@@ -21,7 +21,35 @@ angular.module('myApp')
 
         $scope.ingradients = DishService.getIngradients();
         $scope.allergens = DishService.getAllergens();
-        $scope.categories = CategoriesService.getCategories();
+        $scope.categories = (function(){
+            var categories = CategoriesService.getCategories();
+            $scope.style = [];
+            for(var i = 0; i < categories.length; i++){
+                $scope.style.push({
+                    category : categories[i],
+                    show : true,
+                    glyphicon : 'glyphicon-ok',
+                    btn: 'btn-info'
+                });
+            }
+            return categories;
+        })();
+
+        $scope.changeCategoryState = function(category){
+            for(var i = 0; i < $scope.style.length; i++){
+                var item = $scope.style[i];
+                if(item.category == category){
+                    item.show = !item.show;
+                    if(item.show){
+                        item.glyphicon = 'glyphicon-ok';
+                        item.btn = 'btn-info';
+                    }else{
+                        item.glyphicon = 'glyphicon-remove';
+                        item.btn = 'btn-default';
+                    }
+                }
+            }
+        };
 
         $scope.getDish = function (id) {
             $location.path("/dish/" + id);
